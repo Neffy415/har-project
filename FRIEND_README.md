@@ -14,19 +14,82 @@ It tracks 4 activities from live webcam video: **Walking, Resting, Talking, Stan
 
 You only need **Python 3.11** installed. That's it!
 
-### For Windows:
-1. Clone this repository: `git clone https://github.com/amlan478/amr.git`
-2. Open the folder: `cd amr`
-3. Double-click `setup.bat` (or run it in terminal). This will install everything automatically.
-4. Run: `python execute_all.py`
+### ⚡ QUICK START (5 minutes to working webcam!)
 
-### For macOS / Linux:
-1. Clone this repository: `git clone https://github.com/amlan478/amr.git`
-2. Open the folder: `cd amr`
-3. Make the setup script executable: `chmod +x setup.sh`
-4. Run it: `./setup.sh`
-5. Run: `python3 execute_all.py`
+#### For Windows:
+```
+1. git clone https://github.com/Neffy415/har-project.git
+2. cd har-project
+3. Double-click setup.bat
+4. python main.py
+```
 
-The pipeline takes about 20-40 minutes to download files, build sequences, and train. Once done, your webcam will pop up with the real-time activity tracker! Press 'Q' to exit the camera window.
+#### For macOS / Linux:
+```
+1. git clone https://github.com/Neffy415/har-project.git
+2. cd har-project
+3. chmod +x setup.sh
+4. ./setup.sh
+5. python3 main.py
+```
 
-Enjoy! 🎉
+---
+
+## 📋 Step-by-Step Instructions
+
+### Step 1: Clone the Repository
+Extract this repository to your computer:
+```bash
+git clone https://github.com/Neffy415/har-project.git
+cd har-project
+```
+
+### Step 2: Install Python Dependencies
+The repository includes a pre-trained model, so NO training needed!
+
+**Windows Users:**
+- Double-click `setup.bat` 
+- Or run in PowerShell: `python setup.bat`
+
+**Mac/Linux Users:**
+- Run: `chmod +x setup.sh && ./setup.sh`
+
+This will automatically:
+- Create a Python 3.11 virtual environment
+- Install TensorFlow, OpenCV, YOLO, and all dependencies
+
+### Step 3: Run Real-Time Activity Recognition
+Once setup completes, launch the webcam inference:
+
+**Windows:**
+```bash
+python main.py
+```
+
+**Mac/Linux:**
+```bash
+python3 main.py
+```
+
+A webcam window will open showing:
+- 🟢 **Green bounding box** around detected people
+- 📝 **Activity label** (Walking / Resting / Talking / Standing)
+- 📊 **Confidence percentage** (e.g., "WALKING (94%)")
+
+### Step 4: Exit
+Press **'Q'** on your keyboard to close the camera window.
+
+---
+
+## ✨ What's Different from Other HAR Projects?
+
+- ✅ **Pre-trained model included** - No waiting 20-40 minutes for training
+- ✅ **Features already extracted** - Just run `main.py` and see it work
+- ✅ **Fully automated setup** - One script does everything
+- ✅ **Real-time on CPU** - Runs smoothly on any laptop
+
+---
+
+## 🎯 That's it!
+
+Your activity recognition system is ready to use immediately after cloning! 🎉
