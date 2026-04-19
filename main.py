@@ -87,7 +87,9 @@ while True:
                 confidence = float(pred[class_id])
 
                 # draw result
-                cv2.putText(frame, f"{label} ({confidence:.2f})", (x1, y1 - 10),
+                text = f"{label} ({confidence:.2f})"
+                text_y = y1 - 10 if y1 > 30 else y2 + 25
+                cv2.putText(frame, text, (x1, text_y),
                             cv2.FONT_HERSHEY_SIMPLEX,
                             1, (0, 255, 0), 2)
 
