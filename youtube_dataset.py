@@ -1,5 +1,16 @@
-from pytube import YouTube
 import os
+from yt_dlp import YoutubeDL
+
+
+class _QuietLogger:
+    def debug(self, msg):
+        pass
+
+    def warning(self, msg):
+        pass
+
+    def error(self, msg):
+        pass
 
 # -------------------------
 # ACTIVITY LINKS (ADD YOUR OWN)
@@ -7,34 +18,24 @@ import os
 
 video_links = {
     "walking": [
-        "https://www.youtube.com/watch?v=XXXX1",
-        "https://www.youtube.com/watch?v=XXXX2",
-        "https://www.youtube.com/watch?v=XXXX3"
+        "https://youtu.be/GBkJY86tZRE?si=nB634XX5SaXP0Kv_",
+        "https://youtu.be/F-Xy3_ln_BY?si=w4SivkM2ZtalQ-Nv",
+        "https://youtube.com/shorts/tH3FfSfefJw?si=oiPsvoB1xcjVUrZi"
     ],
-    "sitting": [
-        "https://www.youtube.com/watch?v=XXXX4",
-        "https://www.youtube.com/watch?v=XXXX5",
-        "https://www.youtube.com/watch?v=XXXX6"
+    "resting": [
+        "https://youtube.com/shorts/Zf7Iyqa7jp8?si=ESaGz3Uu2tULtUg-",
+        "https://youtube.com/shorts/XSePplGXdSM?si=8No3m_uR5inODFdH",
+        "https://youtube.com/shorts/aimCKWTZlWo?si=_-K5kIwzEwZRv9WZ"
     ],
-    "dancing": [
-        "https://www.youtube.com/watch?v=XXXX7",
-        "https://www.youtube.com/watch?v=XXXX8",
-        "https://www.youtube.com/watch?v=XXXX9"
+    "talking": [
+        "https://youtube.com/shorts/Q2cumSDBFUY?si=C-65IPBVgRt3OGpD",
+        "https://youtube.com/shorts/-3VY3tqzFaQ?si=Mel47LTzBqkIlvfr",
+        "https://youtube.com/shorts/tjSznYrIGVI?si=c6hV-OTZiz5_R4Fy"
     ],
-    "jumping": [
-        "https://www.youtube.com/watch?v=XXXX10",
-        "https://www.youtube.com/watch?v=XXXX11",
-        "https://www.youtube.com/watch?v=XXXX12"
-    ],
-    "running": [
-        "https://www.youtube.com/watch?v=XXXX13",
-        "https://www.youtube.com/watch?v=XXXX14",
-        "https://www.youtube.com/watch?v=XXXX15"
-    ],
-    "drinking": [
-        "https://www.youtube.com/watch?v=XXXX16",
-        "https://www.youtube.com/watch?v=XXXX17",
-        "https://www.youtube.com/watch?v=XXXX18"
+    "standing": [
+        "https://youtube.com/shorts/uq-dnH51Lko?si=WqZbeJsK6zoWQ2J8",
+        "https://youtube.com/shorts/97_oHyGMVGA?si=LAvyZjX2_p1Ys7md",
+        "https://youtube.com/shorts/i0WCgfZZ0Vo?si=kRze2v9knIBkbm0R"
     ]
 }
 
@@ -53,19 +54,28 @@ def download_videos():
 
         for i, link in enumerate(links):
             try:
-                yt = YouTube(link)
-                stream = yt.streams.filter(file_extension='mp4', progressive=True).first()
+                filename_template = os.path.join(save_path, f"{activity}_{i}.%(ext)s")
+                ydl_opts = {
+                    "format": "mp4/best[ext=mp4]/best",
+                    "outtmpl": filename_template,
+                    "quiet": True,
+                    "no_warnings": True,
+                    "noplaylist": True,
+                    "merge_output_format": "mp4",
+                    "windowsfilenames": True,
+                    "logger": _QuietLogger(),
+                }
 
-                filename = f"{activity}_{i}.mp4"
-                stream.download(output_path=save_path, filename=filename)
+                with YoutubeDL(ydl_opts) as ydl:
+                    ydl.download([link])
 
-                print(f"✔ Downloaded: {filename}")
+                print(f"Downloaded: {activity}_{i}.mp4")
 
             except Exception as e:
-                print(f"❌ Failed: {link}")
+                print(f"Failed: {link}")
                 print("Error:", e)
 
-    print("\nALL DOWNLOADS COMPLETE!")
+    print("\nAll downloads complete!")
 
 # -------------------------
 # RUN

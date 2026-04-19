@@ -9,6 +9,9 @@ from tensorflow.keras.utils import to_categorical
 X = np.load("X.npy")
 y = np.load("y.npy")
 
+if len(X) == 0:
+    raise RuntimeError("X.npy is empty. Run build_dataset.py after downloading videos.")
+
 # one-hot encode labels
 y = to_categorical(y)
 
@@ -17,7 +20,10 @@ y = to_categorical(y)
 # ---------------------------
 model = Sequential()
 
-model.add(LSTM(128, return_sequences=True, input_shape=(30, 1280)))
+seq_len = X.shape[1]
+feature_dim = X.shape[2]
+
+model.add(LSTM(128, return_sequences=True, input_shape=(seq_len, feature_dim)))
 model.add(Dropout(0.3))
 
 model.add(LSTM(64))

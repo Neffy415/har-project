@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+.venv311/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project-specific
+# Large generated files (users will generate these)
+*.npy
+*.h5
+*.hdf5
+
+# Downloaded videos (too large for GitHub)
+dataset/
+!dataset/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+runs/
+
+# Local testing
+test_*.py
+*.avi
+*.mov
