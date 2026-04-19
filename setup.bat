@@ -3,6 +3,9 @@ REM Windows Setup Script for HAR Project
 REM Author: HAR Team
 REM This script sets up the HAR project on Windows
 
+REM Change to the script's directory to ensure proper working directory
+cd /d "%~dp0"
+
 echo.
 echo ========================================
 echo  HAR (Human Activity Recognition) Setup

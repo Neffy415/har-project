@@ -3,6 +3,9 @@
 # HAR Setup Script for macOS/Linux
 # Usage: bash setup.sh
 
+# Change to the script's directory
+cd "$(dirname "$0")"
+
 echo ""
 echo "========================================"
 echo " HAR (Human Activity Recognition) Setup"
